@@ -40,7 +40,6 @@ class HomeOwnersControllerTest extends IntegrationTestCase
 
     /**
      * @return void
-     * @group testing
      */
     public function testAddPost()
     {
@@ -53,6 +52,40 @@ class HomeOwnersControllerTest extends IntegrationTestCase
                 'latitude' => 123,
                 'longitude' => 1231
             ]
+        ]);
+
+        $this->assertRedirect([
+            'controller' => 'HomeOwners',
+            'action' => 'index',
+            'operation_id' => 1
+        ]);
+    }
+
+    /**
+     * @return void
+     */
+    public function testEditBadData()
+    {
+        $this->_setAuthSession(1);
+
+        $this->put('/operations/1/home-owners/1', [
+            'name' => ''
+        ]);
+
+        $this->assertResponseCode(200);
+        $this->assertNoRedirect();
+    }
+
+    /**
+     * @return void
+     * @group testing
+     */
+    public function testEditPut()
+    {
+        $this->_setAuthSession(1);
+
+        $this->put('/operations/1/home-owners/1', [
+            'name' => 'A name'
         ]);
 
         $this->assertRedirect([

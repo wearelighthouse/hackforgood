@@ -5,8 +5,9 @@
     <li>
         <?= $this->Html->link($homeOwner->name, [
                 'controller' => 'HomeOwners',
-                'action' => 'add',
-                'operation_id' => $homeOwner->operation_id
+                'action' => 'edit',
+                'operation_id' => $homeOwner->operation_id,
+                'id' => $homeOwner->id
             ]) ?>
     </li>
 <?php endforeach; ?>

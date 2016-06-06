@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Add Home Owner'); ?>
+<?php $this->assign('title', 'Edit Home Owner'); ?>
 
 <?= $this->Form->create($homeOwner) ?>
     <?= $this->Form->input('name') ?>
@@ -7,5 +7,5 @@
     <?= $this->Form->input('geolocation.latitude') ?>
     <?= $this->Form->input('geolocation.longitude') ?>
 
-    <?= $this->Form->submit('Save') ?>
+    <?= $this->Form->submit('Update') ?>
 <?= $this->Form->end() ?>

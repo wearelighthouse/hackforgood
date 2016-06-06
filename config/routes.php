@@ -37,6 +37,13 @@ Router::scope('/', function ($routes) {
                     'controller' => 'HomeOwners',
                     'action' => 'add'
                 ]);
+
+                $routes->connect('/:id', [
+                    'controller' => 'HomeOwners',
+                    'action' => 'edit'
+                ], [
+                    'pass' => ['id']
+                ]);
             });
         }
     );
