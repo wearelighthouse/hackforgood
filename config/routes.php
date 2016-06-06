@@ -12,6 +12,16 @@ Router::scope('/', function (RouteBuilder $routes) {
         'controller' => 'Home',
         'action' => 'display'
     ]);
+
+    $routes->connect('/login', [
+        'controller' => 'Users',
+        'action' => 'login'
+    ]);
+
+    $routes->connect('/logout', [
+        'controller' => 'Users',
+        'action' => 'logout'
+    ]);
 });
 
 Plugin::routes();

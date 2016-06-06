@@ -5,7 +5,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><?= $this->fetch('title') ?></title>
+    <title>Hack-For-Good | <?= $this->fetch('title') ?></title>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

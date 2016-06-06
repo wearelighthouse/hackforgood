@@ -12,8 +12,13 @@ class AppController extends Controller
      */
     public function initialize()
     {
-        parent::initialize();
-
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'fields' => ['username' => 'email']
+                ]
+            ]
+        ]);
         $this->loadComponent('Flash');
     }
 }
