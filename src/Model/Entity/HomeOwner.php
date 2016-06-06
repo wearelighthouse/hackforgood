@@ -6,8 +6,9 @@ use Cake\ORM\Entity;
 
 /**
  * @property int $id
- * @property string $name
  * @property int $operation_id
+ * @property string $name
+ * @property string $email
  * @property string $street_address
  * @property string $geolocation
  */

@@ -29,6 +29,10 @@ class HomeOwnersTable extends Table
             ->notEmpty('name');
 
         $validator
+            ->requirePresence('email', 'create')
+            ->notEmpty('email');
+
+        $validator
             ->requirePresence('street_address', 'create')
             ->notEmpty('street_address');
 

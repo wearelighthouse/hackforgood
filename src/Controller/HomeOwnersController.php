@@ -12,6 +12,8 @@ class HomeOwnersController extends AppController
     {
         parent::initialize();
 
+        $this->loadComponent('DocuSign');
+
         $this->_operation = $this->HomeOwners->Operations->get($this->request->params['operation_id']);
     }
 
@@ -55,5 +57,13 @@ class HomeOwnersController extends AppController
      */
     public function sign($id)
     {
+        $homeOwner = $this->HomeOwners->get($id);
+
+        $url = $this->DocuSign->signingUrl($homeOwner);
+
+        $this->set([
+            'homeOwner' => $homeOwner,
+            'url' => $url
+        ]);
     }
 }

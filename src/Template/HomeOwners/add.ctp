@@ -2,6 +2,7 @@
 
 <?= $this->Form->create($homeOwner) ?>
     <?= $this->Form->input('name') ?>
+    <?= $this->Form->input('email') ?>
     <?= $this->Form->input('street_address') ?>
 
     <?= $this->Form->input('geolocation.latitude') ?>

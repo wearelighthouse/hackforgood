@@ -18,7 +18,7 @@ use DocuSign\eSign\Model\EnvelopeDefinition;
 use DocuSign\eSign\Model\RecipientViewRequest;
 use DocuSign\eSign\Model\TemplateRole;
 
-class DocusignComponent extends Component
+class DocuSignComponent extends Component
 {
 
     private $_accountID;
@@ -31,7 +31,7 @@ class DocusignComponent extends Component
     public function initialize(array $config)
     {
         $config = new Configuration();
-        $config->setHost($host);
+        $config->setHost($this->_apiUrl);
         $config->addDefaultHeader(
             "X-DocuSign-Authentication",
             "{
@@ -66,7 +66,7 @@ class DocusignComponent extends Component
     /**
      * @return bool|string
      */
-    public function homeOwnerSigningUrl(HomeOwner $homeOwner)
+    public function signingUrl(HomeOwner $homeOwner)
     {
         try {
             $accountId = $this->_accountID();
@@ -74,6 +74,7 @@ class DocusignComponent extends Component
             if ($accountId) {
                 $templateRole = new TemplateRole();
 
+                $templateRole->setClientUserId($homeOwner->id);
                 $templateRole->setEmail($homeOwner->email);
                 $templateRole->setName($homeOwner->name);
                 $templateRole->setRoleName('homeowner');
@@ -85,15 +86,16 @@ class DocusignComponent extends Component
                 $envelopDefinition->setTemplateId(Configure::read('HackForGood.DocuSign.templateId'));
                 $envelopDefinition->setStatus('sent');
 
-                $options = new CreateEnvelopeOptions();
+                $options = new \DocuSign\eSign\Api\EnvelopesApi\CreateEnvelopeOptions();
+
                 $options->setCdseMode(null);
                 $options->setMergeRolesOnDraft(null);
+
+                $envelopeApi = new \DocuSign\eSign\Api\EnvelopesApi($this->_apiClient);
 
                 $envelopeSummary = $envelopeApi->createEnvelope($this->_accountID(), $envelopDefinition, $options);
 
                 if ($envelopeSummary) {
-                    $envelopeApi = new EnvelopesApi($this->_apiClient);
-
                     $recipientViewRequest = new RecipientViewRequest();
                     
                     $recipientViewRequest->setReturnUrl('/');
