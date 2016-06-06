@@ -86,12 +86,12 @@ class DocuSignComponent extends Component
                 $envelopDefinition->setTemplateId(Configure::read('HackForGood.DocuSign.templateId'));
                 $envelopDefinition->setStatus('sent');
 
-                $options = new \DocuSign\eSign\Api\EnvelopesApi\CreateEnvelopeOptions();
+                $options = new CreateEnvelopeOptions();
 
                 $options->setCdseMode(null);
                 $options->setMergeRolesOnDraft(null);
 
-                $envelopeApi = new \DocuSign\eSign\Api\EnvelopesApi($this->_apiClient);
+                $envelopeApi = new EnvelopesApi($this->_apiClient);
 
                 $envelopeSummary = $envelopeApi->createEnvelope($this->_accountID(), $envelopDefinition, $options);
 

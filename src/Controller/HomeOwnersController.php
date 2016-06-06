@@ -58,8 +58,16 @@ class HomeOwnersController extends AppController
     public function sign($id)
     {
         $homeOwner = $this->HomeOwners->get($id);
-
         $url = $this->DocuSign->signingUrl($homeOwner);
+
+        if (!$url) {
+            $this->Flash->error('There was an error, please try again');
+
+            return $this->redirect([
+                'action' => 'index',
+                'operation_id' => $homeOwner->id
+            ]);
+        }
 
         $this->set([
             'homeOwner' => $homeOwner,
