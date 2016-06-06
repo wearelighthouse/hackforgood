@@ -8,14 +8,17 @@
     <title>Hack-For-Good | <?= $this->fetch('title') ?></title>
 
     <?= $this->fetch('meta') ?>
+    <link href="/css/semantic/semantic.css" rel="stylesheet">
     <?= $this->fetch('css') ?>
+
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <?= $this->Flash->render() ?>
-    
-    <?= $this->fetch('content') ?>
+    <div class="ui container">
+        <?= $this->Flash->render() ?>
 
-    <script data-main="/webroot/js/main" src="/webroot/js/vendor/requirejs/require.js"></script>
+        <?= $this->fetch('content') ?>
+    </div>
+    <script src="css/semantic/semantic.js"></script>
 </body>
 </html>
