@@ -16,9 +16,11 @@ class AppController extends Controller
             'authenticate' => [
                 'Form' => [
                     'fields' => ['username' => 'email']
-                ]
+                ],
+                'RememberMe'
             ]
         ]);
+        $this->loadComponent('Cookie');
         $this->loadComponent('Flash');
     }
 }
