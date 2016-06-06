@@ -64,45 +64,23 @@ class HomeOwnersControllerTest extends IntegrationTestCase
     /**
      * @return void
      */
-    public function testEditBadData()
-    {
-        $this->_setAuthSession(1);
-
-        $this->put('/operations/1/home-owners/1', [
-            'name' => ''
-        ]);
-
-        $this->assertResponseCode(200);
-        $this->assertNoRedirect();
-    }
-
-    /**
-     * @return void
-     * @group testing
-     */
-    public function testEditPut()
-    {
-        $this->_setAuthSession(1);
-
-        $this->put('/operations/1/home-owners/1', [
-            'name' => 'A name'
-        ]);
-
-        $this->assertRedirect([
-            'controller' => 'HomeOwners',
-            'action' => 'index',
-            'operation_id' => 1
-        ]);
-    }
-
-    /**
-     * @return void
-     */
     public function testIndexGet()
     {
         $this->_setAuthSession(1);
 
         $this->get('/operations/1/home-owners');
+
+        $this->assertResponseCode(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testSignGet()
+    {
+        $this->_setAuthSession(1);
+
+        $this->get('/operations/1/home-owners/1/sign');
 
         $this->assertResponseCode(200);
     }

@@ -221,3 +221,7 @@ Type::build('datetime')
     ->useImmutable();
 
 Type::map('json', 'App\Database\Type\JsonType');
+
+if (!Configure::check('HackForGood.Docusign')) {
+    // die('Configure docusign');
+}

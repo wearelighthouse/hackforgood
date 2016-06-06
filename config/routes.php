@@ -38,9 +38,9 @@ Router::scope('/', function ($routes) {
                     'action' => 'add'
                 ]);
 
-                $routes->connect('/:id', [
+                $routes->connect('/:id/sign', [
                     'controller' => 'HomeOwners',
-                    'action' => 'edit'
+                    'action' => 'sign'
                 ], [
                     'pass' => ['id']
                 ]);
