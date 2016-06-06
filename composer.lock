@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8c8eee0878b0852c6d5651b334b36d7f",
-    "content-hash": "601fb31c8d0d4504a213a0c837654da4",
+    "hash": "df4249dc6ea4ac976fc8db8e42d5c4ca",
+    "content-hash": "d9a41d497c645bb8b6d5aaf20a35022a",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -342,6 +342,57 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2016-04-28 03:01:34"
+        },
+        {
+            "name": "docusign/esign-client",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/docusign/docusign-php-client.git",
+                "reference": "9967d9b65e814a7e8e6e530f55d3c5386d648260"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/docusign/docusign-php-client/zipball/9967d9b65e814a7e8e6e530f55d3c5386d648260",
+                "reference": "9967d9b65e814a7e8e6e530f55d3c5386d648260",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~0.6.1",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DocuSign\\eSign\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "DocuSign",
+                    "homepage": "https://www.docusign.com/developer-center"
+                }
+            ],
+            "description": "The DocuSign PHP library makes integrating DocuSign into your websites a super fast and painless process. The library is open sourced on GitHub, look for the docusign-php-client repository. Join the eSign revolution!",
+            "homepage": "https://www.docusign.com/developer-center",
+            "keywords": [
+                "api",
+                "php",
+                "sdk",
+                "swagger"
+            ],
+            "time": "2016-02-19 21:58:23"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
