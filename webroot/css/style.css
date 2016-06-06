@@ -6,3 +6,11 @@
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
+
+#map {
+    height: 65vh;
+}
+
+#new-home-button {
+    margin-top: 2em;
+}
