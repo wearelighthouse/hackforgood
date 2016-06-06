@@ -219,3 +219,5 @@ Type::build('date')
     ->useImmutable();
 Type::build('datetime')
     ->useImmutable();
+
+Type::map('json', 'App\Database\Type\JsonType');

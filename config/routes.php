@@ -6,7 +6,7 @@ use Cake\Routing\Router;
 
 Router::defaultRouteClass('DashedRoute');
 
-Router::scope('/', function (RouteBuilder $routes) {
+Router::scope('/', function ($routes) {
 
     $routes->connect('/', [
         'controller' => 'Home',
@@ -22,6 +22,24 @@ Router::scope('/', function (RouteBuilder $routes) {
         'controller' => 'Users',
         'action' => 'logout'
     ]);
+
+    $routes->resources(
+        'Operations',
+        ['only' => ''],
+        function ($routes) {
+            $routes->scope('/home-owners', function ($routes) {
+                $routes->connect('/', [
+                    'controller' => 'HomeOwners',
+                    'action' => 'index'
+                ]);
+
+                $routes->connect('/add', [
+                    'controller' => 'HomeOwners',
+                    'action' => 'add'
+                ]);
+            });
+        }
+    );
 });
 
 Plugin::routes();

@@ -3,3 +3,4 @@
 /tmp/*
 /logs/*
 /webroot/js/vendor/*
+.DS_Store
