@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Add Home Owner'); ?>
+<?php $this->assign('title', 'Register Home Owner'); ?>
 
 <?php $this->loadHelper('Form', [
     'templates' => 'app_form',
@@ -13,7 +13,7 @@
     <?= $this->Form->hidden('geolocation.latitude', ['id' => 'lat']) ?>
     <?= $this->Form->hidden('geolocation.longitude', ['id' => 'lng']) ?>
 
-    <button type="submit" class="ui primary button" disabled>Add Home</button>
+    <button type="submit" class="ui primary button" disabled>Register</button>
 <?= $this->Form->end() ?>
 
 <script>

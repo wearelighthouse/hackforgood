@@ -130,7 +130,7 @@ class HomeOwnersController extends AppController
         if ($homeOwner->envelope_id) {
             $envelope = $this->DocuSign->envelope($homeOwner);
 
-            if ($envelope && $envelope->getStatus === 'completed') {
+            if ($envelope && $envelope->getStatus() === 'completed') {
                 return $this->redirect([
                     'action' => 'assessment',
                     'operation_id' => $homeOwner->operation_id,

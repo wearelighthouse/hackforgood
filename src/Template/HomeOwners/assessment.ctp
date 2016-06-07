@@ -33,3 +33,13 @@
 
     <button type="submit" class="ui primary button">Submit Assessment</button>
 <?= $this->Form->end() ?>
+
+<div class="ui horizontal divider">
+    Or
+</div>
+
+<?= $this->Html->link('Submit assessment later', [
+        'controller' => 'HomeOwners',
+        'action' => 'index',
+        'operation_id' => $operation->id
+    ]) ?>

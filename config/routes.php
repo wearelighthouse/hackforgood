@@ -33,7 +33,7 @@ Router::scope('/', function ($routes) {
                     'action' => 'index'
                 ]);
 
-                $routes->connect('/add', [
+                $routes->connect('/register', [
                     'controller' => 'HomeOwners',
                     'action' => 'add'
                 ]);

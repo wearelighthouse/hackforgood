@@ -8,7 +8,7 @@
     Or
 </div>
 
-<a class="ui fluid primary button" id="new-home-button" href="home-owners/add">Register new home</a>
+<a class="ui fluid primary button" id="new-home-button" href="home-owners/register">Register new home</a>
 
 <script>
     var homes = <?= json_encode($homeOwners) ?>;
