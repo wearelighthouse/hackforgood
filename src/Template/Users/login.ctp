@@ -1,5 +1,10 @@
 <?php $this->assign('title', 'Login'); ?>
 
+<?php $this->loadHelper('Form', [
+    'templates' => 'app_form',
+]);
+?>
+
 <?= $this->Form->create($login, [
         'url' => [
             'controller' => 'Users',
@@ -12,5 +17,5 @@
             'type' => 'checkbox',
             'checked' => true
         ]) ?>
-    <?= $this->Form->button('Login') ?>
+    <button type="submit" class="ui primary button">Login</button>
 <?= $this->Form->end() ?>
