@@ -25,6 +25,5 @@
     </div>
     <script src="/js/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/css/semantic/semantic.js"></script>
-
 </body>
 </html>

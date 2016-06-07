@@ -76,6 +76,8 @@ class HomeOwnersController extends AppController
 
         if ($envelope->getStatus() !== 'completed') {
             $homeOwner->set('envelope_id', null);
+            $homeOwner->set('envelope_status', null);
+
             $this->HomeOwners->save($homeOwner);
 
             return $this->redirect([
@@ -83,6 +85,10 @@ class HomeOwnersController extends AppController
                 'operation_id' => $homeOwner->operation_id,
                 'id' => $homeOwner->id
             ]);
+        } else {
+            $homeOwner->set('envelope_status', 'complete');
+
+            $this->HomeOwners->save($homeOwner);
         }
 
         if ($this->request->is(['patch', 'put'])) {
@@ -121,14 +127,16 @@ class HomeOwnersController extends AppController
             ]
         ]);
 
-        $envelope = $this->DocuSign->envelope($homeOwner);
+        if ($homeOwner->envelope_id) {
+            $envelope = $this->DocuSign->envelope($homeOwner);
 
-        if ($envelope && $envelope->getStatus === 'completed') {
-            return $this->redirect([
-                'action' => 'assessment',
-                'operation_id' => $homeOwner->operation_id,
-                'id' => $homeOwner->id
-            ]);
+            if ($envelope && $envelope->getStatus === 'completed') {
+                return $this->redirect([
+                    'action' => 'assessment',
+                    'operation_id' => $homeOwner->operation_id,
+                    'id' => $homeOwner->id
+                ]);
+            }
         }
 
         $url = $this->DocuSign->signingUrl($homeOwner);
@@ -141,12 +149,10 @@ class HomeOwnersController extends AppController
                 'operation_id' => $homeOwner->id
             ]);
         } else {
+            $homeOwner->set('envelope_status', 'incomplete');
             $this->HomeOwners->save($homeOwner);
         }
 
-        $this->set([
-            'homeOwner' => $homeOwner,
-            'url' => $url
-        ]);
+        return $this->redirect($url);
     }
 }

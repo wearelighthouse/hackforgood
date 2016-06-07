@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Cake\ORM\TableRegistry;
+
 class HomeController extends AppController
 {
 
@@ -10,5 +12,12 @@ class HomeController extends AppController
      */
     public function display()
     {
+        $operation = TableRegistry::get('Operations')->find()->first();
+
+        return $this->redirect([
+            'controller' => 'HomeOwners',
+            'action' => 'index',
+            'operation_id' => $operation->id
+        ]);
     }
 }

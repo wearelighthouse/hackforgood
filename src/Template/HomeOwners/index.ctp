@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Home Owners'); ?>
+<?php $this->assign('title', $operation->name); ?>
 
 <h2 class="ui center aligned sub header">Inspect a home</h2>
 
@@ -33,10 +33,13 @@
     function addMarkerWithTimeout(home, timeout) {
         window.setTimeout(function() {
             console.log(home.geolocation.latitude);
+            var status = !home.envelope_id || home.envelope_status !== 'complete' ? 'red' : (!home.assessment ? 'yellow' : 'blue');
+
             var marker = new google.maps.Marker({
                 position: {lat: parseFloat(home.geolocation.latitude), lng: parseFloat(home.geolocation.longitude)},
                 map: map,
-                animation: google.maps.Animation.DROP
+                animation: google.maps.Animation.DROP,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/' + status + '-dot.png'
             });
             markers.push(marker);
             marker.addListener('click', function () {

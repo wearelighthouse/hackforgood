@@ -85,16 +85,4 @@ class HomeOwnersControllerTest extends IntegrationTestCase
 
         $this->assertResponseCode(200);
     }
-
-    /**
-     * @return void
-     */
-    public function testSignGet()
-    {
-        $this->_setAuthSession(1);
-
-        $this->get('/operations/1/home-owners/1/sign');
-
-        $this->assertResponseCode(200);
-    }
 }
