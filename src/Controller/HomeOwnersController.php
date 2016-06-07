@@ -44,6 +44,20 @@ class HomeOwnersController extends AppController
 
     /**
      * @return void
+     * @throws \Cake\Network\Exception
+     */
+    public function assessment($id)
+    {
+        $homeOwner = $this->HomeOwners->get($id, [
+            'conditions' => [
+                'operation_id' => $this->_operation->id
+            ]
+        ]);
+    }
+
+    /**
+     * @return void
+     * @throws \Cake\Network\Exception
      */
     public function index()
     {
@@ -57,7 +71,11 @@ class HomeOwnersController extends AppController
      */
     public function sign($id)
     {
-        $homeOwner = $this->HomeOwners->get($id);
+        $homeOwner = $this->HomeOwners->get($id, [
+            'conditions' => [
+                'operation_id' => $this->_operation->id
+            ]
+        ]);
         $url = $this->DocuSign->signingUrl($homeOwner);
 
         if (!$url) {

@@ -6,6 +6,7 @@ use App\Model\Entity\HomeOwner;
 
 use Cake\Controller\Component;
 use Cake\Core\Configure;
+use Cake\Routing\Router;
 
 use DocuSign\eSign\ApiClient;
 use DocuSign\eSign\ApiException;
@@ -31,6 +32,7 @@ class DocuSignComponent extends Component
     public function initialize(array $config)
     {
         $config = new Configuration();
+
         $config->setHost($this->_apiUrl);
         $config->addDefaultHeader(
             "X-DocuSign-Authentication",
@@ -42,25 +44,6 @@ class DocuSignComponent extends Component
         );
 
         $this->_apiClient = new ApiClient($config);
-    }
-
-    /**
-     * @return int
-     */
-    private function _accountID()
-    {
-        if ($this->_accountID) {
-            return $this->_accountID;
-        }
-
-        $authenticationApi = new AuthenticationApi($this->_apiClient);
-        $loginInformation = $authenticationApi->login(new LoginOptions());
-
-        if (count($loginInformation) > 0) {
-            $this->_accountID = $loginInformation->getLoginAccounts()[0]->getAccountId();
-        }
-
-        return $this->_accountID;
     }
 
     /**
@@ -81,7 +64,7 @@ class DocuSignComponent extends Component
 
                 $envelopDefinition = new EnvelopeDefinition();
 
-                $envelopDefinition->setEmailSubject("[DocuSign PHP SDK] - Please sign this template doc");
+                $envelopDefinition->setEmailSubject('Home Owner - disclaimer');
                 $envelopDefinition->setTemplateRoles([$templateRole]);
                 $envelopDefinition->setTemplateId(Configure::read('HackForGood.DocuSign.templateId'));
                 $envelopDefinition->setStatus('sent');
@@ -98,7 +81,12 @@ class DocuSignComponent extends Component
                 if ($envelopeSummary) {
                     $recipientViewRequest = new RecipientViewRequest();
                     
-                    $recipientViewRequest->setReturnUrl('/');
+                    $recipientViewRequest->setReturnUrl(Router::url([
+                        'controller' => 'HomeOwners',
+                        'action' => 'assessment',
+                        'operation_id' => $homeOwner->operation_id,
+                        'id' => $homeOwner->id
+                    ], true));
                     $recipientViewRequest->setClientUserId($homeOwner->id);
                     $recipientViewRequest->setAuthenticationMethod('email');
                     $recipientViewRequest->setUserName($homeOwner->name);
@@ -114,5 +102,24 @@ class DocuSignComponent extends Component
         }
 
         return $url;
+    }
+
+    /**
+     * @return int
+     */
+    private function _accountID()
+    {
+        if ($this->_accountID) {
+            return $this->_accountID;
+        }
+
+        $authenticationApi = new AuthenticationApi($this->_apiClient);
+        $loginInformation = $authenticationApi->login(new LoginOptions());
+
+        if (count($loginInformation) > 0) {
+            $this->_accountID = $loginInformation->getLoginAccounts()[0]->getAccountId();
+        }
+
+        return $this->_accountID;
     }
 }

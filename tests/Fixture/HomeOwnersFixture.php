@@ -17,6 +17,7 @@ class HomeOwnersFixture extends TestFixture
             [
                 'id' => 1,
                 'name' => 'Christy Quinn',
+                'email' => 'christy@wearelighthouse.com',
                 'operation_id' => 1,
                 'street_address' => '1 Masefield court',
                 'geolocation' => json_encode([

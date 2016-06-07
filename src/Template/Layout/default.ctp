@@ -5,7 +5,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Hack-For-Good | <?= $this->fetch('title') ?></title>
+    <title>Mango | <?= $this->fetch('title') ?></title>
 
     <?= $this->fetch('meta') ?>
     <link href="/css/semantic/semantic.css" rel="stylesheet">

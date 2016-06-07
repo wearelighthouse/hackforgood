@@ -47,6 +47,7 @@ class HomeOwnersControllerTest extends IntegrationTestCase
 
         $this->post('/operations/1/home-owners/add', [
             'name' => 'New Home Owner',
+            'email' => 'emal@email.com',
             'street_address' => 'Some street address',
             'geolocation' => [
                 'latitude' => 123,
@@ -59,6 +60,18 @@ class HomeOwnersControllerTest extends IntegrationTestCase
             'action' => 'index',
             'operation_id' => 1
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    public function testAssessmentGet()
+    {
+        $this->_setAuthSession(1);
+
+        $this->get('/operations/1/home-owners/1/assessment');
+
+        $this->assertResponseCode(200);
     }
 
     /**

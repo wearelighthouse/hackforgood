@@ -38,6 +38,13 @@ Router::scope('/', function ($routes) {
                     'action' => 'add'
                 ]);
 
+                $routes->connect('/:id/assessment', [
+                    'controller' => 'HomeOwners',
+                    'action' => 'assessment'
+                ], [
+                    'pass' => ['id']
+                ]);
+
                 $routes->connect('/:id/sign', [
                     'controller' => 'HomeOwners',
                     'action' => 'sign'
