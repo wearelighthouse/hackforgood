@@ -18,7 +18,7 @@ class HomeOwnersControllerTest extends IntegrationTestCase
     {
         $this->_setAuthSession(1);
 
-        $this->get('/operations/1/home-owners/add');
+        $this->get('/operations/1/home-owners/register');
 
         $this->assertResponseCode(200);
     }
@@ -30,7 +30,7 @@ class HomeOwnersControllerTest extends IntegrationTestCase
     {
         $this->_setAuthSession(1);
 
-        $this->post('/operations/1/home-owners/add', [
+        $this->post('/operations/1/home-owners/register', [
             'name' => ''
         ]);
 
@@ -45,7 +45,7 @@ class HomeOwnersControllerTest extends IntegrationTestCase
     {
         $this->_setAuthSession(1);
 
-        $this->post('/operations/1/home-owners/add', [
+        $this->post('/operations/1/home-owners/register', [
             'name' => 'New Home Owner',
             'email' => 'emal@email.com',
             'street_address' => 'Some street address',
@@ -71,7 +71,7 @@ class HomeOwnersControllerTest extends IntegrationTestCase
 
         $this->get('/operations/1/home-owners/1/assessment');
 
-        $this->assertResponseCode(200);
+        $this->assertResponseCode(302);
     }
 
     /**
