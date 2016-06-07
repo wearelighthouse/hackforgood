@@ -20,6 +20,14 @@ class HomeOwnersController extends AppController
     /**
      * @return void
      */
+    public function beforeRender(Event $event)
+    {
+        $this->set('operation', $this->_operation);
+    }
+
+    /**
+     * @return void
+     */
     public function add()
     {
         $homeOwner = $this->HomeOwners->newEntity();
