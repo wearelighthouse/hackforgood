@@ -120,6 +120,17 @@ class HomeOwnersController extends AppController
                 'operation_id' => $this->_operation->id
             ]
         ]);
+
+        $envelope = $this->DocuSign->envelope($homeOwner);
+
+        if ($envelope && $envelope->getStatus === 'completed') {
+            return $this->redirect([
+                'action' => 'assessment',
+                'operation_id' => $homeOwner->operation_id,
+                'id' => $homeOwner->id
+            ]);
+        }
+
         $url = $this->DocuSign->signingUrl($homeOwner);
 
         if (!$url) {

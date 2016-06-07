@@ -6,6 +6,7 @@
 ?>
 
 <?= $this->Form->create($login, [
+        'class' => 'ui form',
         'url' => [
             'controller' => 'Users',
             'action' => 'login'

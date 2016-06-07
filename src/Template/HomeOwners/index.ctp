@@ -40,7 +40,11 @@
             });
             markers.push(marker);
             marker.addListener('click', function () {
-                window.location.href = "/operations/" + home.operation_id + "/home-owners/" + home.id + "/sign";
+                if (home.envelope_id) {
+                    window.location.href = "/operations/" + home.operation_id + "/home-owners/" + home.id + "/assessment";
+                } else {
+                    window.location.href = "/operations/" + home.operation_id + "/home-owners/" + home.id + "/sign";
+                }
             });
         }, timeout);
     }
