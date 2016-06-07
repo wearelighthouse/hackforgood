@@ -13,8 +13,8 @@ class OperationsSeed extends AbstractSeed
             [
                 'name' => 'London Floodings',
                 'geolocation' => json_encode([
-                    'latitude' => 51.5286416,
-                    'longitude' => -0.1015987
+                    'longitude' => 51.5286416,
+                    'latitude' => -0.1015987
                 ])
             ]
         ];
