@@ -6,6 +6,7 @@ use Cake\ORM\Entity;
 
 /**
  * @property int $id
+ * @property int $envelope_id
  * @property int $operation_id
  * @property string $name
  * @property string $email

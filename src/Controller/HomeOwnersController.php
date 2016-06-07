@@ -61,6 +61,14 @@ class HomeOwnersController extends AppController
                 'operation_id' => $this->_operation->id
             ]
         ]);
+
+        if (!$homeOwner->envelope_id) {
+            return $this->redirect([
+                'action' => 'sign',
+                'operation_id' => $homeOwner->operation_id,
+                'id' => $homeOwner->id
+            ]);
+        }
     }
 
     /**
@@ -93,6 +101,8 @@ class HomeOwnersController extends AppController
                 'action' => 'index',
                 'operation_id' => $homeOwner->id
             ]);
+        } else {
+            $this->HomeOwners->save($homeOwner);
         }
 
         $this->set([

@@ -47,6 +47,19 @@ class DocuSignComponent extends Component
     }
 
     /**
+     * @return void
+     */
+    public function envelope(HomeOwner $homeOwner)
+    {
+        // $envelopeApi = new EnvelopesApi($this->_apiClient);
+
+        // $options = new CreateEnvelopeOptions();
+        // $options->setInclude(null);
+
+        // $envelope = $envelopeApi->getEnvelope($this->_accountID(), $testConfig->getEnvelopeId(), $options);
+    }
+
+    /**
      * @return bool|string
      */
     public function signingUrl(HomeOwner $homeOwner)
@@ -79,6 +92,8 @@ class DocuSignComponent extends Component
                 $envelopeSummary = $envelopeApi->createEnvelope($this->_accountID(), $envelopDefinition, $options);
 
                 if ($envelopeSummary) {
+                    $homeOwner->set('envelope_id', $envelopeSummary->getEnvelopeId());
+
                     $recipientViewRequest = new RecipientViewRequest();
                     
                     $recipientViewRequest->setReturnUrl(Router::url([
@@ -92,7 +107,7 @@ class DocuSignComponent extends Component
                     $recipientViewRequest->setUserName($homeOwner->name);
                     $recipientViewRequest->setEmail($homeOwner->email);
 
-                    $signingView = $envelopeApi->createRecipientView($accountId, $envelopeSummary->getEnvelopeId(), $recipientViewRequest);
+                    $signingView = $envelopeApi->createRecipientView($accountId, $homeOwner->envelope_id, $recipientViewRequest);
 
                     $url = $signingView->getUrl();
                 }
