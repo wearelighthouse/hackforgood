@@ -13,7 +13,7 @@
     <?= $this->Form->hidden('geolocation.latitude', ['id' => 'lat']) ?>
     <?= $this->Form->hidden('geolocation.longitude', ['id' => 'lng']) ?>
 
-    <button type="submit" class="ui primary button">Add Home</button>
+    <button type="submit" class="ui primary button" disabled>Add Home</button>
 <?= $this->Form->end() ?>
 
 <script>
@@ -39,6 +39,8 @@
         $("#lat").val(place.geometry.location.lat());
         $("#lng").val(place.geometry.location.lng());
         $("button[type='submit']").removeClass("loading");
+
+        $('.button').removeAttr('disabled');
     }
 
     // Bias the autocomplete object to the user's geographical location,

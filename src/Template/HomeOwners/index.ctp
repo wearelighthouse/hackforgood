@@ -15,10 +15,12 @@
     var markers = [];
     var map;
 
+    var operation = <?= json_encode($operation) ?>;
+
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 13,
-            center: {lat: 51.513, lng: -0.10}
+            center: {lat: operation.geolocation.longitude, lng: operation.geolocation.latitude}
         });
         window.setTimeout(drop, 500);
     }
