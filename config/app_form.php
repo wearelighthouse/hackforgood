@@ -9,4 +9,5 @@
 return [
     'inputContainer' => '<div class="field">{{content}}</div>',
     'inputSubmit' => '<button class="ui button" type="{{type}}" {{attrs}}>',
+    'checkboxWrapper' => '<div class="ui checkbox">{{label}}</div>',
 ];
