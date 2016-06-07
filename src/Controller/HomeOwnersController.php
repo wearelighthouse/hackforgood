@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Cake\Event\Event;
+
 class HomeOwnersController extends AppController
 {
 
@@ -69,6 +71,32 @@ class HomeOwnersController extends AppController
                 'id' => $homeOwner->id
             ]);
         }
+
+        $envelope = $this->DocuSign->envelope($homeOwner);
+
+        if ($envelope->getStatus() !== 'completed') {
+            $homeOwner->set('envelope_id', null);
+            $this->HomeOwners->save($homeOwner);
+
+            return $this->redirect([
+                'action' => 'sign',
+                'operation_id' => $homeOwner->operation_id,
+                'id' => $homeOwner->id
+            ]);
+        }
+
+        if ($this->request->is(['patch', 'put'])) {
+            $this->HomeOwners->patchEntity($homeOwner, $this->request->data);
+
+            if ($this->HomeOwners->save($homeOwner)) {
+                return $this->redirect([
+                    'action' => 'index',
+                    'operation_id' => $homeOwner->operation_id
+                ]);
+            }
+        }
+
+        $this->set('homeOwner', $homeOwner);
     }
 
     /**

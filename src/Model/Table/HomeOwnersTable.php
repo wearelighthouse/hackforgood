@@ -2,14 +2,13 @@
 
 namespace App\Model\Table;
 
+use Cake\Database\Schema\Table as Schema;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 class HomeOwnersTable extends Table
 {
-
-    use GeolocationTrait;
 
     /**
      * @return void
@@ -51,5 +50,16 @@ class HomeOwnersTable extends Table
         $rules->add($rules->existsIn(['operation_id'], 'Operations'));
 
         return $rules;
+    }
+
+    /**
+     * @return \Cake\Database\Schema\Table
+     */
+    protected function _initializeSchema(Schema $schema)
+    {
+        $schema->columnType('assessment', 'json');
+        $schema->columnType('geolocation', 'json');
+        
+        return $schema;
     }
 }

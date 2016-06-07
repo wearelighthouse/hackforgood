@@ -14,6 +14,7 @@ use DocuSign\eSign\Api\AuthenticationApi;
 use DocuSign\eSign\Api\AuthenticationApi\LoginOptions;
 use DocuSign\eSign\Api\EnvelopesApi;
 use DocuSign\eSign\Api\EnvelopesApi\CreateEnvelopeOptions;
+use DocuSign\eSign\Api\EnvelopesApi\GetEnvelopeOptions;
 use DocuSign\eSign\Configuration;
 use DocuSign\eSign\Model\EnvelopeDefinition;
 use DocuSign\eSign\Model\RecipientViewRequest;
@@ -51,12 +52,22 @@ class DocuSignComponent extends Component
      */
     public function envelope(HomeOwner $homeOwner)
     {
-        // $envelopeApi = new EnvelopesApi($this->_apiClient);
+        try {
+            $accountId = $this->_accountID();
 
-        // $options = new CreateEnvelopeOptions();
-        // $options->setInclude(null);
+            if ($accountId) {
+                $envelopeApi = new EnvelopesApi($this->_apiClient);
 
-        // $envelope = $envelopeApi->getEnvelope($this->_accountID(), $testConfig->getEnvelopeId(), $options);
+                $options = new GetEnvelopeOptions();
+                $options->setInclude(null);
+
+                $envelope = $envelopeApi->getEnvelope($accountId, $homeOwner->envelope_id, $options);
+            }
+        } catch (ApiException $e) {
+            $envelope = false;
+        }
+
+        return $envelope;
     }
 
     /**
@@ -110,7 +121,11 @@ class DocuSignComponent extends Component
                     $signingView = $envelopeApi->createRecipientView($accountId, $homeOwner->envelope_id, $recipientViewRequest);
 
                     $url = $signingView->getUrl();
+                } else {
+                    $url = false;
                 }
+            } else {
+                $url = false;
             }
         } catch (ApiException $e) {
             $url = false;

@@ -8,5 +8,5 @@
 
 return [
     'inputContainer' => '<div class="field">{{content}}</div>',
-        'inputSubmit' => '<button class="ui button" type="{{type}}" {{attrs}}>',
+    'inputSubmit' => '<button class="ui button" type="{{type}}" {{attrs}}>',
 ];
