@@ -1,2 +1,2 @@
-<h2>Opps!</h2>
+<h2>Oops!</h2>
 <p>Something has gone wrong! Head back to your <a href="/">operation</a>.</p>

@@ -6,12 +6,13 @@
 ?>
 
 <?= $this->Form->create($homeOwner, ['class' => 'ui form']) ?>
-    <?= $this->Form->input('name') ?>
-    <?= $this->Form->input('email') ?>
     <?= $this->Form->input('street_address',
         ['id' => 'autocomplete', 'placeholder' => '12 Oxford Street', 'onFocus' => 'geolocate()']) ?>
     <?= $this->Form->hidden('geolocation.latitude', ['id' => 'lat']) ?>
     <?= $this->Form->hidden('geolocation.longitude', ['id' => 'lng']) ?>
+    
+    <?= $this->Form->input('name') ?>
+    <?= $this->Form->input('email') ?>
 
     <button type="submit" class="ui primary button" disabled>Register</button>
 <?= $this->Form->end() ?>
