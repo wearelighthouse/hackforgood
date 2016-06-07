@@ -97,7 +97,7 @@ class HomeOwnersController extends AppController
             if ($this->HomeOwners->save($homeOwner)) {
                 return $this->redirect([
                     'action' => 'index',
-                    'operation_id' => $homeOwner->operation_id
+                    'operation_id' => $this->_operation->id
                 ]);
             }
         }
@@ -146,7 +146,7 @@ class HomeOwnersController extends AppController
 
             return $this->redirect([
                 'action' => 'index',
-                'operation_id' => $homeOwner->id
+                'operation_id' => $this->_operation->id
             ]);
         } else {
             $homeOwner->set('envelope_status', 'incomplete');

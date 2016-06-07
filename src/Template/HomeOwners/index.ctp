@@ -19,7 +19,7 @@
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 13,
+            zoom: 15,
             center: {lat: operation.geolocation.longitude, lng: operation.geolocation.latitude}
         });
         window.setTimeout(drop, 500);
@@ -34,7 +34,6 @@
 
     function addMarkerWithTimeout(home, timeout) {
         window.setTimeout(function() {
-            console.log(home.geolocation.latitude);
             var status = !home.envelope_id || home.envelope_status !== 'complete' ? 'red' : (!home.assessment ? 'yellow' : 'blue');
 
             var marker = new google.maps.Marker({
@@ -60,8 +59,6 @@
         }
         markers = [];
     }
-
-    console.log("Finished running");
 </script>
 
 <script async defer
