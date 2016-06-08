@@ -2,8 +2,8 @@
 
 ## Installation
 
-* Get composer - https://getcomposer.org/
 * Run `composer install`
+* Run `bower install`
 * Add database details to `config/app.php`
 * Add DocuSign details to `config/app.php`
 
